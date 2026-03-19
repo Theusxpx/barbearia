@@ -103,6 +103,52 @@ cursor:pointer;
 transition:0.3s;
 }
 
+/* ===== IMAGENS NOS QUADRADOS (ADICIONADO) ===== */
+.services label{
+position:relative;
+overflow:hidden;
+color:white;
+}
+
+.services label::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+z-index:0;
+}
+
+.services label input,
+.services label{
+position:relative;
+z-index:1;
+}
+
+.services label:nth-child(1){
+background:url("https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600") center/cover;
+}
+
+.services label:nth-child(2){
+background:url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600") center/cover;
+}
+
+.services label:nth-child(3){
+background:url("https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600") center/cover;
+}
+
+.services label:nth-child(4){
+background:url("https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600") center/cover;
+}
+
+.services label:nth-child(5){
+background:url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600") center/cover;
+}
+
+.services label:nth-child(6){
+background:url("https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600") center/cover;
+}
+/* ===== FIM ===== */
+
 .services label:hover{
 background:#c9a227;
 color:black;
@@ -262,20 +308,19 @@ transform:translateY(0);
 
 <h2>Agendamento</h2>
 
-<label>Nome</label>
-<input type="text" id="nome">
+<label for="nome">Nome</label>
+<input type="text" id="nome" placeholder="Digite seu nome completo">
 
-<label>Escolher Barbeiro</label>
+<label for="barbeiro">Escolher Barbeiro</label>
 <select id="barbeiro">
-<option>Moises</option>
-<option>Reinaldo</option>
-<option>Wallace</option>
+<option>Ramon</option>
+<option>João</option>
 </select>
 
-<label>Data</label>
+<label for="data">Data</label>
 <input type="date" id="data">
 
-<label>Horário</label>
+<label for="hora">Horário</label>
 <select id="hora"></select>
 
 <label>Serviços</label>
@@ -288,7 +333,7 @@ transform:translateY(0);
 <label><input type="checkbox" value="Sobrancelha"> Sobrancelha</label>
 </div>
 
-<button onclick="agendar()">Agendar pelo WhatsApp</button>
+<button id="btn-agendar" type="button" onclick="agendar()">Agendar pelo WhatsApp</button>
 
 </div>
 
@@ -318,131 +363,22 @@ Barbearia Premium © 2026
 </footer>
 
 <script>
-// CONFIG
-const inicio = 9
-const fim = 19
-const intervalo = 30
-const chave = "agenda_barbearia"
+function gerarHorarios(){
+    const select = document.getElementById("hora");
+    select.innerHTML = "";
 
-// PEGAR AGENDA
-function pegarAgenda() {
-    return JSON.parse(localStorage.getItem(chave)) || []
-}
-
-// SALVAR
-function salvarAgenda(dados) {
-    let agenda = pegarAgenda()
-    agenda.push(dados)
-    localStorage.setItem(chave, JSON.stringify(agenda))
-}
-
-// GERAR HORÁRIOS
-function gerarHorarios() {
-    let select = document.getElementById("hora")
-    select.innerHTML = ""
-    let data = document.getElementById("data").value
-    let barbeiro = document.getElementById("barbeiro").value
-    let agenda = pegarAgenda()
-
-    for (let h = inicio; h < fim; h++) {
-        for (let m = 0; m < 60; m += intervalo) {
-            let hora = String(h).padStart(2, "0")
-            let minuto = String(m).padStart(2, "0")
-            let horario = `${hora}:${minuto}`
-            let option = document.createElement("option")
-            option.value = horario
-            option.textContent = horario
-
-            let ocupado = agenda.find(a => a.data === data && a.hora === horario && a.barbeiro === barbeiro)
-            if (ocupado) {
-                option.disabled = true
-                option.textContent += " (ocupado)"
-            }
-
-            if (data) {
-                let agora = new Date()
-                let dataHora = new Date(`${data}T${horario}`)
-                if (dataHora < agora) option.disabled = true
-            }
-
-            select.appendChild(option)
+    for(let h = 9; h <= 19; h++){
+        for(let m = 0; m < 60; m += 30){
+            let hora = h.toString().padStart(2,'0') + ":" + m.toString().padStart(2,'0');
+            let option = document.createElement("option");
+            option.value = hora;
+            option.textContent = hora;
+            select.appendChild(option);
         }
     }
 }
 
-// ATUALIZA
-document.getElementById("data").addEventListener("change", gerarHorarios)
-document.getElementById("barbeiro").addEventListener("change", gerarHorarios)
-
-// RENDERIZA AGENDA ADMIN
-function renderizarAgenda(){
-    let lista = document.getElementById("lista")
-    lista.innerHTML = ""
-    let agenda = pegarAgenda()
-    agenda.forEach((a,index)=>{
-        let div = document.createElement("div")
-        div.className = "item"
-        div.innerHTML = `${a.nome} - ${a.barbeiro} <br> ${a.data} às ${a.hora} <br> ${a.servicos.join(", ")}`
-        let btn = document.createElement("button")
-        btn.textContent = "Cancelar"
-        btn.onclick = ()=>{
-            agenda.splice(index,1)
-            localStorage.setItem(chave, JSON.stringify(agenda))
-            renderizarAgenda()
-            gerarHorarios()
-        }
-        div.appendChild(btn)
-        lista.appendChild(div)
-    })
-}
-
-// AGENDAR
-function agendar() {
-    let botao = document.querySelector("button")
-    botao.disabled = true
-
-    let nome = document.getElementById("nome").value
-    let barbeiro = document.getElementById("barbeiro").value
-    let data = document.getElementById("data").value
-    let hora = document.getElementById("hora").value
-
-    let servicos = []
-    document.querySelectorAll("input[type=checkbox]:checked").forEach(el => servicos.push(el.value))
-
-    if (!nome || !data || !hora) {
-        alert("Preencha todos os campos!")
-        botao.disabled = false
-        return
-    }
-
-    let agenda = pegarAgenda()
-    let conflito = agenda.some(a => a.data===data && a.hora===hora && a.barbeiro===barbeiro)
-    if (conflito){
-        alert("❌ Esse horário já foi reservado!")
-        gerarHorarios()
-        botao.disabled = false
-        return
-    }
-
-    let novoAgendamento = { nome, barbeiro, data, hora, servicos }
-    salvarAgenda(novoAgendamento)
-    renderizarAgenda()
-
-    let mensagem = `💈 *Agendamento Barbearia Premium* 💈\n\n👤 Nome: ${nome}\n✂️ Barbeiro: ${barbeiro}\n📅 Data: ${data}\n⏰ Horário: ${hora}\n🧔 Serviços: ${servicos.join(", ")}\n\nObrigado!`
-    let numero = "5561982075238"
-    let link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
-    window.open(link)
-
-    document.body.insertAdjacentHTML("beforeend", `<div id="popup">✅ Agendamento confirmado!</div>`)
-    setTimeout(()=>{document.getElementById("popup").remove()},2000)
-
-    gerarHorarios()
-    botao.disabled = false
-}
-
-// INICIAR
-gerarHorarios()
-renderizarAgenda()
+window.onload = gerarHorarios;
 </script>
 
 </body>
