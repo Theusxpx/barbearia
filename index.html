@@ -192,7 +192,7 @@ margin-top:10px;
 
 <body>
 
-<header>💈 Barbearia Premium</header>
+<header>💈 Ramom barbearia</header>
 
 <section class="hero">
 <h1>Agende seu horário</h1>
@@ -261,11 +261,11 @@ margin-top:10px;
 <div id="lista"></div>
 </section>
 
-<a href="https://instagram.com" target="_blank" class="insta">📸 Instagram</a>
+<a href="https://www.instagram.com/Ramom_barbearia/" target="_blank" class="insta">📸 @Ramom_barbearia</a>
 
 <footer>
-Barbearia Premium © 2026
-<div class="horario">⏰ Funcionamento: 09:00 às 19:30</div>
+Ramom barbearia © 2026
+<div class="horario">⏰ Funcionamento: Segunda a Sábado - 09:00 às 19:00</div>
 </footer>
 
 <script>
@@ -306,7 +306,12 @@ function agendar(){
     lista.appendChild(item);
 }
 
-window.onload = gerarHorarios;
+window.onload = function(){
+    gerarHorarios();
+
+    const hoje = new Date().toISOString().split("T")[0];
+    document.getElementById("data").setAttribute("min", hoje);
+};
 </script>
 
 </body>
