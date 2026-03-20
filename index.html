@@ -285,7 +285,9 @@ function gerarHorarios(){
 function agendar(){
     let nome = document.getElementById("nome").value;
     let barbeiro = document.getElementById("barbeiro").value;
-    let data = document.getElementById("data").value;
+   let dataInput = document.getElementById("data").value;
+let [ano, mes, dia] = dataInput.split("-");
+let data = `${dia}/${mes}/${ano}`;
     let hora = document.getElementById("hora").value;
 
     let servicos = [];
