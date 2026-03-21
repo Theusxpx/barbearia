@@ -285,9 +285,20 @@ function gerarHorarios(){
 function agendar(){
     let nome = document.getElementById("nome").value;
     let barbeiro = document.getElementById("barbeiro").value;
-   let dataInput = document.getElementById("data").value;
-let [ano, mes, dia] = dataInput.split("-");
-let data = `${dia}/${mes}/${ano}`;
+
+    let dataInput = document.getElementById("data").value;
+
+    // 🚫 BLOQUEIO DE DOMINGO
+    let diaSemana = new Date(dataInput).getDay();
+    if(diaSemana === 0){
+        alert("Domingo estamos fechados!");
+        return;
+    }
+
+    // FORMATAÇÃO DA DATA
+    let [ano, mes, dia] = dataInput.split("-");
+    let data = `${dia}/${mes}/${ano}`;
+
     let hora = document.getElementById("hora").value;
 
     let servicos = [];
