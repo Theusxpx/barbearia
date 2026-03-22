@@ -288,7 +288,6 @@ Limpar Agenda
 
 <a href="https://www.instagram.com/Ramom_barbearia/" target="_blank" class="insta">📸 @Ramom_barbearia</a>
 
-<!-- BOTÃO WHATSAPP -->
 <a href="https://wa.me/5561982075238" class="whatsapp-float" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
@@ -357,9 +356,18 @@ function agendar(){
         return;
     }
 
+    // 🔒 BLOQUEAR DATAS PASSADAS
+    let hoje = new Date();
+    hoje.setHours(0,0,0,0);
+    let dataEscolhida = new Date(data);
+
+    if(dataEscolhida < hoje){
+        alert("Não é possível agendar para datas passadas!");
+        return;
+    }
+
     // 🚫 BLOQUEIO DOMINGO
-    let diaSemana = new Date(data).getDay();
-    if(diaSemana === 0){
+    if(dataEscolhida.getDay() === 0){
         alert("Domingo estamos fechados!");
         return;
     }
@@ -405,7 +413,11 @@ window.onload = function(){
     gerarHorarios();
     renderizar();
 
-    // 🚫 BLOQUEIO AO ESCOLHER DATA
+    // 🔒 BLOQUEAR DATAS PASSADAS NO CALENDÁRIO
+    let hoje = new Date().toISOString().split("T")[0];
+    document.getElementById("data").setAttribute("min", hoje);
+
+    // 🚫 BLOQUEIO DOMINGO
     document.getElementById("data").addEventListener("change", function(){
         let data = new Date(this.value);
         if(data.getDay() === 0){
