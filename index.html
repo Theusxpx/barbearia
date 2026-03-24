@@ -303,14 +303,23 @@ function gerarHorarios(){
     select.innerHTML = "";
 
     for(let h = 9; h <= 19; h++){
-        for(let m = 0; m < 60; m += 30){
-            let hora = h.toString().padStart(2,'0') + ":" + m.toString().padStart(2,'0');
-            let option = document.createElement("option");
-            option.value = hora;
-            option.textContent = hora;
-            select.appendChild(option);
-        }
+    for(let m = 0; m < 60; m += 30){
+
+        if(h === 19 && m === 30) continue; // 🚫 bloqueia 19:30
+
+        let hora = h.toString().padStart(2,'0') + ":" + m.toString().padStart(2,'0');
+
+        let option = document.createElement("option");
+        option.value = hora;
+        option.textContent = hora;
+
+        select.appendChild(option);
     }
+}
+}
+function formatarData(data) {
+    const [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`;
 }
 
 function salvarAgendamentos(lista){
@@ -331,8 +340,9 @@ function renderizar(){
         let div = document.createElement("div");
         div.className = "item";
         div.innerHTML = `
-            ${item.nome} - ${item.data} ${item.hora}
-            <button onclick="remover(${index})">Excluir</button>
+    ${item.nome} - ${formatarData(item.data)} ${item.hora}
+    <button onclick="remover(${index})">Excluir</button>
+
         `;
         lista.appendChild(div);
     });
@@ -359,7 +369,8 @@ function agendar(){
     // 🔒 BLOQUEAR DATAS PASSADAS
     let hoje = new Date();
     hoje.setHours(0,0,0,0);
-    let dataEscolhida = new Date(data);
+    let [ano, mes, dia] = data.split("-");
+let dataEscolhida = new Date(ano, mes - 1, dia);
 
     if(dataEscolhida < hoje){
         alert("Não é possível agendar para datas passadas!");
@@ -392,10 +403,12 @@ function agendar(){
 
     renderizar();
 
-    let msg = `Olá, quero agendar:
+    let dataFormatada = formatarData(data);
+
+let msg = `Olá, quero agendar:
 Nome: ${nome}
 Barbeiro: ${barbeiro}
-Data: ${data}
+Data: ${dataFormatada}
 Hora: ${hora}
 Serviços: ${servicos.join(", ")}`;
 
@@ -413,15 +426,21 @@ window.onload = function(){
     gerarHorarios();
     renderizar();
 
-    // 🔒 BLOQUEAR DATAS PASSADAS NO CALENDÁRIO
-    let hoje = new Date().toISOString().split("T")[0];
-    document.getElementById("data").setAttribute("min", hoje);
+    let inputData = document.getElementById("data");
 
-    // 🚫 BLOQUEIO DOMINGO
-    document.getElementById("data").addEventListener("change", function(){
-        let data = new Date(this.value);
+    // 🔒 bloquear datas passadas
+    let hoje = new Date().toISOString().split("T")[0];
+    inputData.setAttribute("min", hoje);
+
+    // 🚫 bloquear domingo (visual + lógica)
+    inputData.addEventListener("input", function(){
+        if(!this.value) return;
+
+        let [ano, mes, dia] = this.value.split("-");
+        let data = new Date(ano, mes - 1, dia);
+
         if(data.getDay() === 0){
-            alert("Domingo não funciona!");
+            alert("Domingo estamos fechados!");
             this.value = "";
         }
     });
