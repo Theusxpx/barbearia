@@ -1,140 +1,352 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barbearia Premium</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600");background-size:cover;color:white;}
-header{background:#000;padding:25px;text-align:center;font-size:28px;border-bottom:3px solid #c9a227;}
-.hero{text-align:center;padding:60px 20px;background:rgba(0,0,0,0.6);}
-.container{max-width:900px;margin:40px auto;background:rgba(0,0,0,0.85);padding:40px;border-radius:10px;}
-.container label{display:block;margin-top:15px;color:#ccc;}
-.container input,.container select{width:100%;padding:14px;font-size:16px;margin-top:5px;}
-.services{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:15px;margin-top:10px;}
-.services label{position:relative;padding:20px;border-radius:12px;color:white;cursor:pointer;overflow:hidden;transition:0.3s;border:2px solid transparent;display:flex;align-items:flex-end;justify-content:center;height:180px;background-size:cover;background-position:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-.services label span{position:relative;z-index:1;background:rgba(0,0,0,0.5);padding:5px 10px;border-radius:6px;font-weight:500;text-align:center;}
-.services input{display:none;}
-.services label.checked{background:#c9a227 !important;color:#000;font-weight:600;box-shadow:0 0 25px rgba(201,162,39,0.9);transform:scale(1.05);}
-.services label:nth-child(1){background-image:url("https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600");}
-.services label:nth-child(2){background-image:url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600");}
-.services label:nth-child(3){background-image:url("https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600");}
-button{width:100%;padding:16px;margin-top:25px;background:#c9a227;border:none;border-radius:6px;cursor:pointer;font-size:18px;transition:0.3s;}
-button:hover{background:#e6b820;}
-.whatsapp-float{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 15px rgba(0,0,0,0.4);z-index:999;transition:0.3s;}
-.whatsapp-float img{width:35px;height:35px;}
-.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(37,211,102,0.8);}
-.galeria{padding:40px;background:#111;}
-.fotos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;}
-.fotos img{width:100%;height:150px;object-fit:cover;border-radius:8px;}
-.final{height:250px;display:flex;justify-content:center;align-items:center;font-size:28px;background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=1200") center/cover no-repeat;}
-.admin{max-width:800px;margin:40px auto;background:#000;padding:20px;border-radius:10px;}
-.admin .item{display:flex;flex-direction:column;background:#1a1a1a;padding:15px;margin-bottom:15px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.5);transition:0.3s;}
-.admin .item:hover{transform:scale(1.02);box-shadow:0 6px 18px rgba(201,162,39,0.7);}
-.admin .item .info{display:flex;flex-direction:column;gap:4px;}
-.admin .item .info span{color:#c9a227;font-weight:500;}
-.admin .item button{align-self:flex-end;margin-top:10px;background:red;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;transition:0.3s;}
-.admin .item button:hover{background:#ff4c4c;}
-footer{text-align:center;padding:20px;background:black;}
-.horario{margin-top:5px;color:#c9a227;}
-.insta{display:block;text-align:center;color:#c9a227;margin-top:10px;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600");
+      background-size: cover;
+      color: white;
+    }
+
+    header {
+      background: #000;
+      padding: 25px;
+      text-align: center;
+      font-size: 28px;
+      border-bottom: 3px solid #c9a227;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .container label {
+      display: block;
+      margin-top: 15px;
+      color: #ccc;
+    }
+
+    .container input,
+    .container select {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .services label {
+      position: relative;
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .services label span {
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .services input {
+      display: none;
+    }
+
+    .services label.checked {
+      background: #c9a227 !important;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 0 25px rgba(201, 162, 39, 0.9);
+      transform: scale(1.05);
+    }
+
+    .services label:nth-child(1) {
+      background-image: url("https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600");
+    }
+
+    .services label:nth-child(2) {
+      background-image: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600");
+    }
+
+    .services label:nth-child(3) {
+      background-image: url("https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600");
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      margin-top: 25px;
+      background: #c9a227;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e6b820;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      transition: 0.3s;
+    }
+
+    .whatsapp-float img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.8);
+    }
+
+    .galeria {
+      padding: 40px;
+      background: #111;
+    }
+
+    .fotos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .fotos img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .final {
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=1200") center/cover no-repeat;
+    }
+
+    .admin {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #000;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .admin .item {
+      display: flex;
+      flex-direction: column;
+      background: #1a1a1a;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+    }
+
+    .admin .item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 18px rgba(201, 162, 39, 0.7);
+    }
+
+    .admin .item .info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .admin .item .info span {
+      color: #c9a227;
+      font-weight: 500;
+    }
+
+    .admin .item button {
+      align-self: flex-end;
+      margin-top: 10px;
+      background: red;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .admin .item button:hover {
+      background: #ff4c4c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: black;
+    }
+
+    .horario {
+      margin-top: 5px;
+      color: #c9a227;
+    }
+
+    .insta {
+      display: block;
+      text-align: center;
+      color: #c9a227;
+      margin-top: 10px;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>💈 Ramom barbearia</header>
+  <header>💈 Ramom barbearia</header>
 
-<section class="hero">
-<h1>Agende seu horário</h1>
-<p>Corte, barba e cuidados profissionais</p>
-</section>
+  <section class="hero">
+    <h1>Agende seu horário</h1>
+    <p>Corte, barba e cuidados profissionais</p>
+  </section>
 
-<div class="container">
-<h2>Agendamento</h2>
+  <div class="container">
+    <h2>Agendamento</h2>
 
-<label>Nome</label>
-<input type="text" id="nome" placeholder="Seu nome">
+    <label>Nome</label>
+    <input type="text" id="nome" placeholder="Seu nome">
 
-<label>Nome do barbeiro</label>
-<select id="barbeiro">
-<option>Ramon</option>
-<option>João</option>
-</select>
+    <label>Nome do barbeiro</label>
+    <select id="barbeiro">
+      <option>Ramon</option>
+      <option>João</option>
+    </select>
 
-<label>Data</label>
-<input type="date" id="data">
+    <label>Data</label>
+    <input type="date" id="data">
 
-<label>Horário</label>
-<select id="hora"></select>
+    <label>Horário</label>
+    <select id="hora"></select>
 
-<label>Serviços</label>
-<div class="services">
-<label><input type="checkbox"><span>Corte + barba + sobrancelha</span></label>
-<label><input type="checkbox"><span>Corte + barba + progressiva</span></label>
-<label><input type="checkbox"><span>Corte + pigmentação</span></label>
-</div>
+    <label>Serviços</label>
+    <div class="services">
+      <label><input type="checkbox"><span>Corte + barba + sobrancelha</span></label>
+      <label><input type="checkbox"><span>Corte + barba + progressiva</span></label>
+      <label><input type="checkbox"><span>Corte + pigmentação</span></label>
+    </div>
 
-<button onclick="agendar()">Agendar pelo WhatsApp</button>
-</div>
+    <button onclick="agendar()">Agendar pelo WhatsApp</button>
+  </div>
 
-<section class="galeria">
-<h2>Trabalhos da Barbearia</h2>
-<div class="fotos">
-<img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600">
-<img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600">
-<img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600">
-<img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600">
-</div>
-</section>
+  <section class="galeria">
+    <h2>Trabalhos da Barbearia</h2>
+    <div class="fotos">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600">
+      <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600">
+    </div>
+  </section>
 
-<section class="final">
-<h2>Seu estilo começa aqui 💈</h2>
-</section>
+  <section class="final">
+    <h2>Seu estilo começa aqui 💈</h2>
+  </section>
 
-<section class="admin">
-<h2>Painel</h2>
-<button onclick="limparAgenda()" style="background:red;margin-bottom:10px;">Limpar Agenda</button>
-<div id="lista"></div>
-</section>
+  <section class="admin">
+    <h2>Painel</h2>
+    <button onclick="limparAgenda()" style="background:red;margin-bottom:10px;">Limpar Agenda</button>
+    <div id="lista"></div>
+  </section>
 
-<a href="https://www.instagram.com/Ramom_barbearia/" target="_blank" class="insta">📸 @Ramom_barbearia</a>
-<a href="https://wa.me/5561982075238" class="whatsapp-float" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</a>
+  <a href="https://www.instagram.com/Ramom_barbearia/" target="_blank" class="insta">📸 @Ramom_barbearia</a>
+  <a href="https://wa.me/556194008231" class="whatsapp-float" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+  </a>
 
-<footer>
-Ramom barbearia © 2026
-<div class="horario">⏰ Funcionamento: Segunda a Sábado - 09:00 às 19:00</div>
-</footer>
+  <footer>
+    Ramom barbearia © 2026
+    <div class="horario">⏰ Funcionamento: Segunda a Sábado - 09:00 às 19:00</div>
+  </footer>
 
-<script>
-// HORÁRIOS
-function gerarHorarios(){
-  const select=document.getElementById("hora");
-  select.innerHTML="";
-  for(let h=9;h<=19;h++){
-    for(let m=0;m<60;m+=30){
-      if(h===19 && m===30) continue;
-      let hora=h.toString().padStart(2,'0')+":"+m.toString().padStart(2,'0');
-      let option=document.createElement("option");
-      option.value=hora; option.textContent=hora;
-      select.appendChild(option);
+  <script>
+    // HORÁRIOS
+    function gerarHorarios() {
+      const select = document.getElementById("hora");
+      select.innerHTML = "";
+      for (let h = 9; h <= 19; h++) {
+        for (let m = 0; m < 60; m += 30) {
+          if (h === 19 && m === 30) continue;
+          let hora = h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
+          let option = document.createElement("option");
+          option.value = hora; option.textContent = hora;
+          select.appendChild(option);
+        }
+      }
     }
-  }
-}
 
-// AGENDA
-function formatarData(data){const [a,m,d]=data.split("-");return `${d}/${m}/${a}`;}
-function salvarAgendamentos(lista){localStorage.setItem("agenda",JSON.stringify(lista));}
-function carregarAgendamentos(){return JSON.parse(localStorage.getItem("agenda")||'[]');}
-function renderizar(){
-  let lista=document.getElementById("lista"); lista.innerHTML="";
-  let dados=carregarAgendamentos();
-  dados.forEach((item,index)=>{
-    let div=document.createElement("div"); div.className="item";
-    div.innerHTML=`
+    // AGENDA
+    function formatarData(data) { const [a, m, d] = data.split("-"); return `${d}/${m}/${a}`; }
+    function salvarAgendamentos(lista) { localStorage.setItem("agenda", JSON.stringify(lista)); }
+    function carregarAgendamentos() { return JSON.parse(localStorage.getItem("agenda") || '[]'); }
+    function renderizar() {
+      let lista = document.getElementById("lista"); lista.innerHTML = "";
+      let dados = carregarAgendamentos();
+      dados.forEach((item, index) => {
+        let div = document.createElement("div"); div.className = "item";
+        div.innerHTML = `
       <div class="info">
         <span><strong>Nome:</strong> ${item.nome}</span>
         <span><strong>Barbeiro:</strong> ${item.barbeiro}</span>
@@ -144,58 +356,59 @@ function renderizar(){
       </div>
       <button onclick="remover(${index})">Excluir</button>
     `;
-    lista.appendChild(div);
-  });
-}
-function remover(index){
-  let dados=carregarAgendamentos();
-  dados.splice(index,1);
-  salvarAgendamentos(dados);
-  renderizar();
-}
-function agendar(){
-  let nome=document.getElementById("nome").value;
-  let barbeiro=document.getElementById("barbeiro").value;
-  let data=document.getElementById("data").value;
-  let hora=document.getElementById("hora").value;
-  if(!nome||!data){alert("Preencha os dados!");return;}
-  let servicos=[]; document.querySelectorAll('.services input:checked').forEach(el=>servicos.push(el.nextElementSibling.innerText));
-  if(servicos.length===0){alert("Selecione pelo menos um serviço!");return;}
-  let [a,m,d]=data.split("-");
-  let dataEscolhida=new Date(a,m-1,d);
-  let hoje=new Date(); hoje.setHours(0,0,0,0);
-  if(dataEscolhida<hoje){alert("Não é possível agendar datas passadas!");return;}
-  if(dataEscolhida.getDay()===0){alert("Domingo estamos fechados!");return;}
-  let dados=carregarAgendamentos();
-  if(dados.find(item=>item.data===data && item.hora===hora && item.barbeiro===barbeiro)){alert("Horário já agendado");return;}
-  dados.push({nome,barbeiro,data,hora,servicos});
-  salvarAgendamentos(dados); renderizar();
-  let msg=`Olá, quero agendar:\nNome: ${nome}\nBarbeiro: ${barbeiro}\nData: ${formatarData(data)}\nHora: ${hora}\nServiços: ${servicos.join(", ")}`;
-  window.open(`https://wa.me/5561982075238?text=${encodeURIComponent(msg)}`);
-}
-function limparAgenda(){if(confirm("Apagar todos agendamentos?")){localStorage.removeItem("agenda"); renderizar();}}
+        lista.appendChild(div);
+      });
+    }
+    function remover(index) {
+      let dados = carregarAgendamentos();
+      dados.splice(index, 1);
+      salvarAgendamentos(dados);
+      renderizar();
+    }
+    function agendar() {
+      let nome = document.getElementById("nome").value;
+      let barbeiro = document.getElementById("barbeiro").value;
+      let data = document.getElementById("data").value;
+      let hora = document.getElementById("hora").value;
+      if (!nome || !data) { alert("Preencha os dados!"); return; }
+      let servicos = []; document.querySelectorAll('.services input:checked').forEach(el => servicos.push(el.nextElementSibling.innerText));
+      if (servicos.length === 0) { alert("Selecione pelo menos um serviço!"); return; }
+      let [a, m, d] = data.split("-");
+      let dataEscolhida = new Date(a, m - 1, d);
+      let hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+      if (dataEscolhida < hoje) { alert("Não é possível agendar datas passadas!"); return; }
+      if (dataEscolhida.getDay() === 0) { alert("Domingo estamos fechados!"); return; }
+      let dados = carregarAgendamentos();
+      if (dados.find(item => item.data === data && item.hora === hora && item.barbeiro === barbeiro)) { alert("Horário já agendado"); return; }
+      dados.push({ nome, barbeiro, data, hora, servicos });
+      salvarAgendamentos(dados); renderizar();
+      let msg = `Olá, quero agendar:\nNome: ${nome}\nBarbeiro: ${barbeiro}\nData: ${formatarData(data)}\nHora: ${hora}\nServiços: ${servicos.join(", ")}`;
+      window.open(`https://wa.me/5561994008231?text=${encodeURIComponent(msg)}`);
+    }
+    function limparAgenda() { if (confirm("Apagar todos agendamentos?")) { localStorage.removeItem("agenda"); renderizar(); } }
 
-// SERVIÇOS INTERATIVOS
-document.querySelectorAll('.services label').forEach(label=>{
-  label.addEventListener('click',()=>{
-    const input=label.querySelector('input');
-    input.checked=!input.checked;
-    label.classList.toggle('checked',input.checked);
-  });
-});
+    // SERVIÇOS INTERATIVOS
+    document.querySelectorAll('.services label').forEach(label => {
+      label.addEventListener('click', () => {
+        const input = label.querySelector('input');
+        input.checked = !input.checked;
+        label.classList.toggle('checked', input.checked);
+      });
+    });
 
-// BLOQUEAR DATAS PASSADAS
-let inputData=document.getElementById("data");
-let hoje=new Date().toISOString().split("T")[0];
-inputData.setAttribute("min",hoje);
-inputData.addEventListener("input",function(){
-  if(!this.value) return;
-  let [a,m,d]=this.value.split("-");
-  let data=new Date(a,m-1,d);
-  if(data.getDay()===0){alert("Domingo estamos fechados!"); this.value="";}
-});
+    // BLOQUEAR DATAS PASSADAS
+    let inputData = document.getElementById("data");
+    let hoje = new Date().toISOString().split("T")[0];
+    inputData.setAttribute("min", hoje);
+    inputData.addEventListener("input", function () {
+      if (!this.value) return;
+      let [a, m, d] = this.value.split("-");
+      let data = new Date(a, m - 1, d);
+      if (data.getDay() === 0) { alert("Domingo estamos fechados!"); this.value = ""; }
+    });
 
-window.onload=function(){gerarHorarios(); renderizar();}
-</script>
+    window.onload = function () { gerarHorarios(); renderizar(); }
+  </script>
 </body>
+
 </html>
